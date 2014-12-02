@@ -147,6 +147,27 @@ Defines the highlight color when the pointer is hovering over the connection.
 
 Defines the connection selection configuration.
 
+##### Example - Styling the connection selection
+
+     connectionDefaults: {
+                hover: {
+                    stroke: {color: "red"}
+                },
+                stroke: {
+                    color: "#979797",
+                    width: 4
+                },
+                type: "polyline",
+                startCap: "FilledCircle",
+                endCap: "ArrowEnd",
+                selection: {
+                    handles: {
+                        fill: {color: "Yellow"},
+                        stroke: {color: "White"}
+                    }
+                }
+            }
+
 ### connectionDefaults.selection.handles `Object`
 
 Defines the connection selection handles configuration.
@@ -234,15 +255,15 @@ Note that you can also use the "ArrowStart" for the endCap but its direction wil
 
 ### connections.from `Object|String|Number`
 
-Defines the connection from.
+Defines the source of the connection.
 
 ### connections.from.x `Number`
 
-Defines the point x value.
+Defines the x-coordinate of the connection source.
 
 ### connections.from.y `Number`
 
-Defines the point y value.
+Defines the y-coordinate of the connection source.
 
 ### connections.hover `Object`
 
@@ -260,17 +281,40 @@ Defines the highlight color when the pointer is hovering over the connection.
 
 Sets the intermediate points (in global coordinates) of the connection. It's important to note that currently these points cannot be manipulated in the interface.
 
+
 #### Example - setting intermediate connection points
 
 ![Intermediate connection points.](/api/dataviz/diagram/connectionpoints.png)
 
+     $("#diagram").kendoDiagram({
+            shapes: [
+                {
+                    id: "1",
+                    content: {
+                        text: "Monday"
+                    }
+                },
+                {
+                    id: "2",
+                    content: "Tuesday"
+                }
+            ],
+            connections: [
+
+                {
+                    from: "1",
+                    to: "2",
+                    points:[new kendo.dataviz.diagram.Point(100,55)]
+                }
+            ]});
+
 ### connections.points.x `Number`
 
-Sets the X coordinate of the point.
+Sets the X coordinate of the intermediate point.
 
 ### connections.points.y `Number`
 
-Sets the Y coordinate of the point.
+Sets the Y coordinate of the intermediate point.
 
 ### connections.selection `Object`
 
@@ -441,11 +485,99 @@ Defines how the diagram behaves when the user attempts to edit shape content, cr
 
 ### editable.connectionTemplate `String|Function`
 
-Specifies the connection editor template.
+Specifies the connection editor template which shows up when editing the connection via a pop-up editor much like 'editable.template' configuration of the Kendo UI Grid widget. 
+
+#### Example - setting the connectionTemplate
+
+Assuming that the diagram is data bound and that the connection data contains properties 'meaning' and 'domain'. These can be edited by setting a Kendo template 
+
+     <script id="popup-editor" type="text/x-kendo-template">
+        <h3>Edit Connection Data</h3>
+        <p>
+            <label>Semantic meaning:<input name="meaning" /></label>
+        </p>
+        <p>
+            <label>Domain: <input data-role="domain" name="domain" /></label>
+        </p>
+    </script>
+     
+and a diagram configuration as follows
+
+     $("#diagram").kendoDiagram({
+                readOnly: false,
+                dataSource: shapesDataSource,
+                connectionsDataSource: connectionsDataSource,
+                editable: {
+                    tools: ["edit"],
+                    connectionTemplate: kendo.template($("#popup-editor").html())
+                },
+                 
+                connectionDefaults: {
+                   editable: {
+                        tools: ["edit"]
+                    }
+                },
+                dataBound: onDataBound
+            });     
+See also the Kendo data-bound sample for a similar example.
 
 ### editable.resize `Boolean|Object` *(default: true)*
 
-Specifies the shape resizing.
+Defines the look-and-feel of the resizing handles.
+
+#### Example - styling the resizing handles
+
+The 'editable.resize' configuration below collects pretty much all of the available parameters. 
+
+     $("#diagram").kendoDiagram({
+            shapes: [
+                {
+                    id: "1",
+                    content: {
+                        text: "Monday"
+                    }
+                },
+                {
+                    id: "2",
+                    content: "Tuesday"
+                }
+            ],
+            connections: [
+
+                {
+                    from: "1",
+                    to: "2"
+                }
+           ],           
+            editable: {
+                resize: {
+                    handles: {
+                        fill: {
+                            color: "red",
+                            opacity: 0.5
+                        },
+                        height:10,
+                        width: 10,
+                        stroke:{
+                            color:"blue",
+                            width:1,
+                            dashType:"dot"
+                        },
+                        hover:
+                        {
+                            fill:{
+                                color:"green",
+                                opcaity:.8
+                            },
+                            stroke:{
+                                color:"purple",
+                                width:5
+                            }
+                        }
+                    }
+                }
+            }
+        });
 
 ### editable.resize.handles `Object`
 
@@ -521,7 +653,7 @@ The hangles width.
 
 ### editable.shapeTemplate `String|Function`
 
-Specifies the shape editor template.
+Specifies the shape editor template. See the 'editable.connectionTemplate' for an example.
 
 ### editable.tools `Array`
 
