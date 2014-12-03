@@ -543,7 +543,6 @@ The 'editable.resize' configuration below collects pretty much all of the availa
                 }
             ],
             connections: [
-
                 {
                     from: "1",
                     to: "2"
@@ -581,75 +580,131 @@ The 'editable.resize' configuration below collects pretty much all of the availa
 
 ### editable.resize.handles `Object`
 
-Specifies the handles style.
+Specifies the settings of the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
 
 ### editable.resize.handles.fill `String|Object`
 
-Specifies the handles fill options.
+Specifies the fill settings of the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.fill.color `String`
 
-Specifies the handles fill color.
+Specifies the fill color of the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.fill.opacity `Number` *(default: 1)*
 
-Specifies the handles fill opacity.
+Specifies the fill opacity of the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.height `Number`
 
-The hangles height.
+Specifies the height of the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.hover `Object`
 
-Set the handles hover styles.
+Specifies the settings of the resizing handles on hovering over them. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.hover.fill `String|Object`
 
-Set the handles hover fill options.
+Specifies the fill settings on hovering over the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.hover.fill.color `String`
 
-Set the handles hover fill color.
+Specifies the fill color on hovering over the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.hover.fill.opacity `Number` *(default: 1)*
 
-Set the handles hover fill opacity.
+Specifies the fill opacity on hovering over the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.hover.stroke `Object`
 
-Specifies the handles stroke styles.
+Specifies the stroke on hovering over the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.hover.stroke.color `String`
 
-Specifies the handles stroke color.
+Specifies the stroke color on hovering over the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.hover.stroke.dashType `String`
 
-Specifies the handles stroke dash type.
+Specifies the stroke dash type on hovering over the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.hover.stroke.width `Number`
 
-Specifies the handles stroke width.
+Specifies the stroke color on hovering over the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.stroke `Object`
 
-Specifies the handles stroke styles.
+Specifies the stroke of the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.stroke.color `String`
 
-Specifies the handles stroke color.
+Specifies the stroke color of the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.stroke.dashType `String`
 
-Specifies the handles stroke dash type.
+Specifies the stroke dash type of the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.stroke.width `Number`
 
-Specifies the handles stroke width.
+Specifies the stroke thickness of the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
 
 ### editable.resize.handles.width `Number`
 
-The hangles width.
+Specifies the width of the resizing handles. See the [edtable.resize](#configuration-editable.resize) configuration for an example.
+
+
+### editable.rotate `Boolean|Object` *(default: true)*
+
+Specifies whether the shapes can be rotated. Note that changing this setting after creating the diagram will have no effect.
+
+#### Example - styling the rotation thumb
+
+     editable:{
+         rotate:{
+             fill:{
+                 color:"red",
+                 opacity:.5
+             },
+             stroke:{
+                 color:"blue",
+                 width:2
+             }
+         }
+     }
+
+### editable.rotate.fill `Object`
+
+Specifies the fill settings of the rotation thumb.
+
+### editable.rotate.fill.color `String`
+
+Specifies the fill color of the rotation thumb.
+
+### editable.rotate.fill.opacity `Number` *(default: 1)*
+
+ Specifies the fill opacity of the rotation thumb.
+
+### editable.rotate.stroke.color `String`
+
+Specifies the stroke color of the rotation thumb.
+
+### editable.rotate.stroke.width `Number` *(default: 1)*
+
+Specifies the stroke thickness of the rotation thumb.
 
 ### editable.shapeTemplate `String|Function`
 
@@ -1396,11 +1451,11 @@ The path option of a Shape is a description of a custom geometry. The format fol
 
 ### shapeDefaults.rotation `Object` *(default: null)*
 
-
+Defines the rotation of the shape.
 
 ### shapeDefaults.rotation.angle `Number` *(default: 0)*
 
-
+Sets the rotational angle of the shape.
 
 ### shapeDefaults.source `String`
 
