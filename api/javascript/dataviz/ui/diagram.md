@@ -696,7 +696,7 @@ Specifies the fill color of the rotation thumb.
 
 ### editable.rotate.fill.opacity `Number` *(default: 1)*
 
- Specifies the fill opacity of the rotation thumb.
+Specifies the fill opacity of the rotation thumb.
 
 ### editable.rotate.stroke.color `String`
 
@@ -2513,19 +2513,36 @@ The point to zoom into or out of.
 
 ### add
 
-Fired when the user add new shape or connection.
+Fired when the user adds new shape or connection.
 
 The event handler function context (available via the `this` keyword) will be set to the widget instance.
+
+#### Example - handling the add event
+
+     $('<div id="diagram" />').kendoDiagram({
+         shapes: [{
+             id: "id1",
+             type: "Rectangle",
+             x: 0,
+             y: 0,
+             width: 100,
+             height: 100
+         }],
+         add: function(e) {
+             var addedShape = e.shape;
+             // 'this' refers to the widget here
+         }
+     })
 
 #### Event Data
 
 ##### e.connection `kendo.data.Model`
 
-The dataItem to which connection is bound.
+The connection which has been added/changed, if any.
 
 ##### e.shape `kendo.data.Model`
 
-The dataItem to which shape is bound.
+The shape which has been added/changed, if any.
 
 ##### e.sender `kendo.ui.Diagram`
 
@@ -2533,7 +2550,7 @@ The widget instance which fired the event.
 
 ### cancel
 
-Fired when the user clicks the "cancel" button in the popup window.
+Fired when the user clicks the "cancel" button in the popup window in case the item was added via a toolbar.
 
 #### Event Data
 
@@ -2561,7 +2578,7 @@ Fired when an item is added or removed to/from the diagram.
 
 ##### e.added `Array`
 
-The removed items (shapes or connections).
+The added items (shapes or connections).
 
 ##### e.removed `Array`
 
@@ -2574,6 +2591,52 @@ The widget instance which fired the event.
 ### click
 
 Fired when the user clicks on a shape or a connection.
+
+#### Example - handling the click event
+
+     $("#diagram").kendoDiagram({
+                 shapes: [
+                     {
+                         id: "1",
+                         content: {
+                             text: "Monday"
+                         }
+                     },
+                     {
+                         id: "2",
+                         content: "Tuesday"
+                     }
+                 ],
+                 connections: [
+
+                     {
+                         from: "1",
+                         to: "2"
+                     }
+                 ],
+                 layout: {
+                     type: "tree"
+                 },
+                 click: function(e) {
+                     if(e.item instanceof kendo.dataviz.diagram.Shape)
+                         console.log(e.item.options.content? e.item.options.content.text: "No content.");
+                     else
+                         console.log("Clicked a connection.");
+                 },
+                 shapeDefaults: {
+                     type: "circle",
+                     width: 70,
+                     height: 70,
+                     hover: {
+                         fill: "Orange"
+                     }
+                 },
+                 connectionDefaults: {
+                     type: "polyline",
+                     startCap: "FilledCircle",
+                     endCap: "ArrowEnd"
+                 }
+             })
 
 #### Event Data
 
@@ -2683,7 +2746,7 @@ The widget instance which fired the event.
 
 ### save
 
-Fired when the user a shape or connection da is saved.
+Fired when the user saved a shape or a connection.
 
 #### Event Data
 
