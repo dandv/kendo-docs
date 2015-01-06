@@ -412,7 +412,7 @@ If an array, each level uses the field that is at the same index in the array, o
     });
     </script>
 
-### dataUrlField `String` *(default: null)*
+### dataUrlField `String` *(default: 'url')*
 
 Sets the field of the data item that provides the link URL of the nodes.
 
